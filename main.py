@@ -8,7 +8,7 @@ class Cipher:
         self.operations = []
         self.has_encrypted = False
 
-    def input_numbers(self):  # The missing input_numbers method!
+    def input_numbers(self):
         while True:
             try:
                 number = input("Enter a number (or 'q' to quit): ")
@@ -51,8 +51,8 @@ class Cipher:
         decrypted_numbers = []
         encrypted_number = self.encrypted_numbers[0]
         operation_symbol, random_number = self.operations[0]
-        operations = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv} # Use operator module
-        operation = operations[operation_symbol] # Get the actual function
+        operations = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
+        operation = operations[operation_symbol]
         try:
             decrypted_number_val = operation(encrypted_number, -random_number) if operation_symbol == '+' else \
                 operation(encrypted_number, random_number) if operation_symbol == '-' else \
@@ -68,18 +68,13 @@ class Cipher:
         return str(self.encrypted_numbers)
 
 
-# Create a Cipher object
 cipher = Cipher()
 
-# Get numbers from the user
 cipher.input_numbers()
 
-# Encrypt the numbers
 cipher.encrypt()
 
-# Print the encrypted numbers
 print("Encrypted numbers:", cipher)
 
-# Decrypt and print the original numbers
 decrypted_numbers = cipher.decrypt()
 print("Decrypted numbers:", decrypted_numbers)
